@@ -1,37 +1,66 @@
 /**
  * OOPSBannerApp
- * UC5: Concise array declaration and initialization
- * using String.join() with enhanced for-loop.
+ * UC6: Modular banner using helper methods for O, P, S.
  *
  * @author Rithika Mahesh
- * @version 5.0
+ * @version 6.0
  */
 
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        // Combined declaration and initialization
-        String[] banner = {
+        String[] letterO = buildO();
+        String[] letterP = buildP();
+        String[] letterS = buildS();
 
-            String.join(" ", "*****", "*****", "*****", "*****"),
-
-            String.join(" ", "*   *", "*   *", "*   *", "*   *"),
-
-            String.join(" ", "*   *", "*   *", "*   *", "*   *"),
-
-            String.join(" ", "*   *", "*   *", "*****", "*****"),
-
-            String.join(" ", "*   *", "*   *", "*", "*"),
-
-            String.join(" ", "*   *", "*   *", "*", "*"),
-
-            String.join(" ", "*****", "*****", "*", "*****")
-        };
-
-        // Enhanced for-loop
-        for (String line : banner) {
-            System.out.println(line);
+        // Combine letters row by row
+        for (int i = 0; i < letterO.length; i++) {
+            System.out.println(
+                    letterO[i] + " " +
+                    letterO[i] + " " +
+                    letterP[i] + " " +
+                    letterS[i]
+            );
         }
+    }
+
+    // Helper method for O
+    public static String[] buildO() {
+        return new String[]{
+                "*****",
+                "*   *",
+                "*   *",
+                "*   *",
+                "*   *",
+                "*   *",
+                "*****"
+        };
+    }
+
+    // Helper method for P
+    public static String[] buildP() {
+        return new String[]{
+                "*****",
+                "*   *",
+                "*   *",
+                "*****",
+                "*",
+                "*",
+                "*"
+        };
+    }
+
+    // Helper method for S
+    public static String[] buildS() {
+        return new String[]{
+                "*****",
+                "*",
+                "*",
+                "*****",
+                "    *",
+                "    *",
+                "*****"
+        };
     }
 }
