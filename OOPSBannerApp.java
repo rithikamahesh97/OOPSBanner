@@ -1,9 +1,10 @@
 /**
  * OOPSBannerApp
- * UC7: Object-Oriented banner using CharacterPatternMap class.
+ * UC8: Final version using HashMap for efficient
+ * character pattern storage and retrieval.
  *
  * @author Rithika Mahesh
- * @version 7.0
+ * @version 8.0
  */
 
 import java.util.HashMap;
@@ -13,31 +14,35 @@ public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        // Create pattern map
-        Map<Character, CharacterPatternMap> patternMap = initializePatterns();
+        Map<Character, String[]> patternMap = initializePatternMap();
 
         String word = "OOPS";
 
-        // Render banner row by row
-        for (int row = 0; row < 7; row++) {
+        int bannerHeight = 7;
+
+        for (int row = 0; row < bannerHeight; row++) {
 
             StringBuilder lineBuilder = new StringBuilder();
 
             for (char ch : word.toCharArray()) {
-                CharacterPatternMap pattern = patternMap.get(ch);
-                lineBuilder.append(pattern.getPattern()[row]).append(" ");
+
+                String[] pattern = patternMap.get(ch);
+
+                if (pattern != null) {
+                    lineBuilder.append(pattern[row]).append(" ");
+                }
             }
 
             System.out.println(lineBuilder.toString());
         }
     }
 
-    // Initialize all supported character patterns
-    private static Map<Character, CharacterPatternMap> initializePatterns() {
+    // Centralized pattern storage
+    private static Map<Character, String[]> initializePatternMap() {
 
-        Map<Character, CharacterPatternMap> map = new HashMap<>();
+        Map<Character, String[]> map = new HashMap<>();
 
-        map.put('O', new CharacterPatternMap('O', new String[]{
+        map.put('O', new String[]{
                 "*****",
                 "*   *",
                 "*   *",
@@ -45,9 +50,9 @@ public class OOPSBannerApp {
                 "*   *",
                 "*   *",
                 "*****"
-        }));
+        });
 
-        map.put('P', new CharacterPatternMap('P', new String[]{
+        map.put('P', new String[]{
                 "*****",
                 "*   *",
                 "*   *",
@@ -55,9 +60,9 @@ public class OOPSBannerApp {
                 "*",
                 "*",
                 "*"
-        }));
+        });
 
-        map.put('S', new CharacterPatternMap('S', new String[]{
+        map.put('S', new String[]{
                 "*****",
                 "*",
                 "*",
@@ -65,28 +70,8 @@ public class OOPSBannerApp {
                 "    *",
                 "    *",
                 "*****"
-        }));
+        });
 
         return map;
-    }
-
-    // Static Inner Class
-    static class CharacterPatternMap {
-
-        private char character;
-        private String[] pattern;
-
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public char getCharacter() {
-            return character;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
     }
 }
